@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusPulse | College Event Management</title>
+<style>
+:root{--bg:#f5f7fb;--surface:#fff;--text:#172033;--muted:#697386;--primary:#5b4bdb;--primary2:#4335b7;--line:#e6e9f2;--green:#16865c;--orange:#b96a12;--shadow:0 14px 40px rgba(29,35,70,.08)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+.layout{display:grid;grid-template-columns:250px 1fr;min-height:100vh}.sidebar{background:#171a35;color:#fff;padding:26px 18px;display:flex;flex-direction:column;gap:28px}.brand{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:800;letter-spacing:-.5px;padding:0 10px}.brand-mark{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,#8b7cff,#5545dc);display:grid;place-items:center;font-weight:900}.side-label{font-size:10px;color:#8f94b8;letter-spacing:1.5px;font-weight:800;padding:0 12px;margin-bottom:8px}.nav{display:grid;gap:6px}.nav button{border:0;background:transparent;color:#c5c8de;text-align:left;padding:12px;border-radius:11px;display:flex;align-items:center;gap:12px;font-weight:600}.nav button.active,.nav button:hover{background:#2b2e52;color:white}.nav .ico{width:20px;text-align:center}.sidebar-bottom{margin-top:auto;background:#252849;border-radius:16px;padding:16px;color:#d7d9ee;font-size:12px;line-height:1.6}.sidebar-bottom strong{display:block;color:white;font-size:14px;margin-bottom:5px}
+main{min-width:0}.topbar{height:78px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 34px;gap:20px}.search{width:min(390px,48%);position:relative}.search input{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px 12px 40px;outline:none}.search span{position:absolute;left:14px;top:10px;color:var(--muted)}.user-area{display:flex;align-items:center;gap:12px}.avatar{width:38px;height:38px;border-radius:50%;background:#e9e6ff;color:#5142ca;display:grid;place-items:center;font-weight:800}.user-meta{font-size:13px}.user-meta small{display:block;color:var(--muted);margin-top:3px}.content{padding:30px 34px 50px;max-width:1500px;margin:auto}.welcome{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:24px}.eyebrow{font-size:12px;color:var(--primary);font-weight:800;letter-spacing:1.2px;text-transform:uppercase}.welcome h1{font-size:30px;letter-spacing:-1px;margin:8px 0}.welcome p{color:var(--muted);margin:0}.btn{border:0;border-radius:11px;padding:12px 16px;background:var(--primary);color:white;font-weight:750;box-shadow:0 5px 12px #5b4bdb2b}.btn:hover{background:var(--primary2)}.btn.secondary{background:#efedff;color:var(--primary);box-shadow:none}.btn.outline{background:var(--surface);color:var(--text);border:1px solid var(--line);box-shadow:none}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:24px}.stat{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:var(--shadow)}.stat-head{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px;font-weight:650}.stat-icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#efedff;color:var(--primary);font-size:18px}.stat strong{display:block;font-size:29px;margin:13px 0 4px;letter-spacing:-1px}.stat small{color:var(--muted)}.stat small em{color:var(--green);font-style:normal;font-weight:700}
+.hero{background:linear-gradient(110deg,#312a81,#6555e9 68%,#877aff);border-radius:20px;color:#fff;padding:26px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:26px;overflow:hidden;position:relative}.hero:after{content:"";position:absolute;width:230px;height:230px;border:38px solid #ffffff15;border-radius:50%;right:10%;top:-115px}.hero h2{margin:7px 0;font-size:24px;letter-spacing:-.6px}.hero p{margin:0;color:#e1deff;font-size:14px;max-width:550px;line-height:1.6}.hero .btn{background:#fff;color:#4c3bc6;box-shadow:none;position:relative;z-index:1;white-space:nowrap}.section-head{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:28px 0 15px}.section-head h2{font-size:19px;margin:0;letter-spacing:-.4px}.section-head p{color:var(--muted);font-size:13px;margin:5px 0 0}.filters{display:flex;gap:8px;flex-wrap:wrap}.filters button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 13px;font-size:12px;font-weight:700;color:var(--muted)}.filters button.active{background:#efedff;color:var(--primary);border-color:#d8d2ff}
+.events{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.event-card{background:var(--surface);border:1px solid var(--line);border-radius:17px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0}.event-art{height:135px;padding:17px;display:flex;align-items:flex-end;justify-content:space-between;color:white;position:relative;overflow:hidden}.event-art:after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;border:24px solid #ffffff20;right:-22px;top:-60px}.event-art .art-emoji{font-size:45px;filter:drop-shadow(0 6px 8px #0002);z-index:1}.event-art .date-chip{background:#ffffffdf;color:#252347;padding:8px 10px;border-radius:10px;font-size:11px;font-weight:800;z-index:1}.art-tech{background:linear-gradient(135deg,#147d9b,#48c5c5)}.art-music{background:linear-gradient(135deg,#8b3fc1,#ef789b)}.art-sport{background:linear-gradient(135deg,#df7936,#f4c55d)}.art-art{background:linear-gradient(135deg,#3154ad,#78a8ef)}.art-career{background:linear-gradient(135deg,#13775d,#59c5a2)}.art-culture{background:linear-gradient(135deg,#b44458,#f09c7b)}.event-body{padding:17px;display:flex;flex-direction:column;flex:1}.event-type{font-size:10px;text-transform:uppercase;letter-spacing:1px;font-weight:800;color:var(--primary)}.event-body h3{font-size:17px;margin:8px 0}.event-body p{font-size:12px;color:var(--muted);line-height:1.5;margin:0 0 14px}.event-meta{display:grid;gap:8px;font-size:12px;color:var(--muted);margin-bottom:17px}.event-meta span{display:flex;gap:8px;align-items:center}.event-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}.spots{font-size:11px;color:var(--muted)}.event-footer button{padding:9px 12px;font-size:12px}.tag{display:inline-flex;padding:5px 8px;border-radius:7px;background:#e7f7ef;color:var(--green);font-size:10px;font-weight:800}.tag.full{background:#fff1df;color:var(--orange)}
+.lower-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:25px}.panel{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:var(--shadow);min-width:0}.panel h3{font-size:16px;margin:0}.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.panel-head button{background:transparent;border:0;color:var(--primary);font-size:12px;font-weight:800}.activity{display:grid;gap:14px}.activity-row{display:flex;gap:12px;align-items:center}.activity-icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#f0efff;flex-shrink:0}.activity-text{min-width:0;flex:1;font-size:12px}.activity-text strong{display:block;font-size:13px;margin-bottom:3px}.activity-text small{color:var(--muted)}.activity-status{font-size:10px;font-weight:800;color:var(--green)}.empty{padding:25px;text-align:center;color:var(--muted);font-size:13px;grid-column:1/-1}
+.page{display:none}.page.active{display:block}.table-wrap{overflow:auto}.data-table{width:100%;border-collapse:collapse;font-size:13px}.data-table th,.data-table td{text-align:left;padding:13px 10px;border-bottom:1px solid var(--line);white-space:nowrap}.data-table th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:750}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:var(--surface);color:var(--text);outline:none}.field textarea{min-height:90px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px #5b4bdb18}.modal-backdrop{position:fixed;inset:0;background:#11152bcc;display:grid;place-items:center;padding:20px;z-index:10}.modal{width:min(560px,100%);max-height:90vh;overflow:auto;background:var(--surface);border-radius:20px;padding:25px;box-shadow:0 30px 90px #0004}.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.modal-head h2{font-size:21px;margin:0}.close{border:0;background:var(--bg);border-radius:9px;width:34px;height:34px;font-size:20px;color:var(--muted)}.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:20px}.toast{position:fixed;right:22px;bottom:22px;background:#171a35;color:white;padding:13px 18px;border-radius:12px;box-shadow:var(--shadow);z-index:20;font-size:13px;max-width:calc(100vw - 44px);animation:rise .2s ease}.auth-wrap{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:var(--surface)}.auth-art{background:linear-gradient(145deg,#211d62,#5b4bdb 65%,#8c7eff);color:white;padding:8vw 7vw;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}.auth-art:after{content:"";position:absolute;width:450px;height:450px;border:70px solid #ffffff16;border-radius:50%;right:-180px;bottom:-150px}.auth-art h1{font-size:clamp(35px,4vw,58px);line-height:1.05;letter-spacing:-2px;max-width:520px;margin:22px 0}.auth-art p{color:#e2deff;line-height:1.8;max-width:420px}.auth-content{padding:30px;display:grid;place-items:center}.auth-box{width:min(390px,100%)}.auth-box h2{font-size:28px;margin:28px 0 8px}.auth-box>p{font-size:13px;color:var(--muted);margin:0 0 25px}.auth-box .field{margin-bottom:15px}.auth-switch{text-align:center;font-size:13px;color:var(--muted);margin-top:20px}.text-btn{border:0;background:none;color:var(--primary);font-weight:800;padding:0}.demo-box{margin-top:20px;border:1px dashed #c9c3ff;background:#f7f5ff;padding:14px;border-radius:12px;font-size:12px;color:#4b438a;line-height:1.7}.auth-logo{display:flex;align-items:center;gap:10px;font-weight:850;font-size:19px}.auth-logo .brand-mark{color:white}.mobile-menu{display:none}
+@keyframes rise{from{transform:translateY(10px);opacity:0}to{transform:translateY(0);opacity:1}}
+@media(max-width:1100px){.layout{grid-template-columns:210px 1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.events{grid-template-columns:repeat(2,minmax(0,1fr))}.content{padding:25px 22px}.topbar{padding:0 22px}}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.sidebar{position:fixed;left:-260px;top:0;bottom:0;width:250px;z-index:9;transition:left .2s}.sidebar.open{left:0}.mobile-menu{display:inline-grid;place-items:center;width:38px;height:38px;border:1px solid var(--line);background:var(--surface);border-radius:10px}.topbar{height:68px;padding:0 15px}.search{width:100%;max-width:280px}.user-meta{display:none}.content{padding:22px 15px 35px}.welcome{flex-direction:column}.welcome h1{font-size:26px}.hero{align-items:flex-start;flex-direction:column;padding:22px}.hero h2{font-size:21px}.stats{gap:10px}.stat{padding:14px}.stat strong{font-size:25px}.stat-head{font-size:11px}.stat-icon{width:31px;height:31px}.events{grid-template-columns:1fr}.lower-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.auth-wrap{grid-template-columns:1fr}.auth-art{display:none}.auth-content{padding:25px}.section-head{align-items:flex-start;flex-direction:column}.filters{width:100%}}
+@media(min-width:761px){.sidebar{position:sticky;top:0;height:100vh}}
+</style>
+</head>
+<body>
+<div id="authScreen" class="auth-wrap">
+  <section class="auth-art">
+    <div class="auth-logo"><span class="brand-mark">C</span> CampusPulse</div>
+    <h1>Make campus life happen.</h1>
+    <p>Discover events, join your community, and turn ideas into unforgettable college experiences — all in one place.</p>
+    <div style="margin-top:28px;font-size:12px;color:#e0dcff">✦ Discover · Register · Organize · Celebrate</div>
+  </section>
+  <section class="auth-content">
+    <div class="auth-box">
+      <div class="auth-logo"><span class="brand-mark">C</span> CampusPulse</div>
+      <div id="signinForm">
+        <h2>Welcome back</h2><p>Sign in to continue to your campus dashboard.</p>
+        <form id="loginForm">
+          <div class="field"><label for="loginEmail">Email address</label><input id="loginEmail" type="email" autocomplete="email" placeholder="you@college.edu" required></div>
+          <div class="field"><label for="loginPassword">Password</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Enter your password" required minlength="6"></div>
+          <button class="btn" style="width:100%;margin-top:5px" type="submit">Sign in →</button>
+        </form>
+        <div class="auth-switch">New to CampusPulse? <button class="text-btn" id="showSignup">Create account</button></div>
+        <div class="demo-box"><strong>Try the demo account</strong><br>Email: demo@campuspulse.in<br>Password: Demo@123<br><button class="btn secondary" id="demoLogin" style="margin-top:10px">Enter demo dashboard</button></div>
+      </div>
+      <div id="signupForm" class="hidden">
+        <h2>Create account</h2><p>Join your college community in a few steps.</p>
+        <form id="registerForm">
+          <div class="field"><label for="signupName">Full name</label><input id="signupName" autocomplete="name" placeholder="Your full name" required maxlength="70"></div>
+          <div class="field"><label for="signupEmail">College email</label><input id="signupEmail" type="email" autocomplete="email" placeholder="you@college.edu" required maxlength="120"></div>
+          <div class="field"><label for="signupCollege">College name</label><input id="signupCollege" placeholder="Your college" required maxlength="100"></div>
+          <div class="field"><label for="signupPassword">Password (minimum 6 characters)</label><input id="signupPassword" type="password" autocomplete="new-password" minlength="6" required></div>
+          <div class="field"><label for="signupConfirm">Confirm password</label><input id="signupConfirm" type="password" autocomplete="new-password" minlength="6" required></div>
+          <button class="btn" style="width:100%;margin-top:5px" type="submit">Create account →</button>
+        </form>
+        <div class="auth-switch">Already registered? <button class="text-btn" id="showSignin">Sign in</button></div>
+      </div>
+    </div>
+  </section>
+</div>
+<div id="app" class="layout hidden">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><span class="brand-mark">C</span> CampusPulse</div>
+    <div><div class="side-label">WORKSPACE</div><nav class="nav">
+      <button class="active" data-page="dashboard"><span class="ico">▦</span> Dashboard</button>
+      <button data-page="events"><span class="ico">◷</span> Explore events</button>
+      <button data-page="registrations"><span class="ico">✓</span> My registrations</button>
+      <button data-page="organize"><span class="ico">＋</span> Organize event</button>
+    </nav></div>
+    <div><div class="side-label">ACCOUNT</div><nav class="nav"><button id="logoutBtn"><span class="ico">↪</span> Sign out</button></nav></div>
+    <div class="sidebar-bottom"><strong>Ideas start here ✨</strong>Every great campus memory begins with showing up. Find your next experience.</div>
+  </aside>
+  <main>
+    <header class="topbar">
+      <div style="display:flex;align-items:center;gap:10px;min-width:0"><button class="mobile-menu" id="mobileMenu" aria-label="Open navigation">☰</button><div class="search"><span>⌕</span><input id="globalSearch" type="search" placeholder="Search events, categories..."></div></div>
+      <div class="user-area"><div class="user-meta"><strong id="topName">Student</strong><small id="topCollege">College community</small></div><div class="avatar" id="topAvatar">S</div></div>
+    </header>
+    <div class="content">
+      <section id="page-dashboard" class="page active">
+        <div class="welcome"><div><div class="eyebrow">YOUR CAMPUS, YOUR COMMUNITY</div><h1 id="welcomeTitle">Good afternoon 👋</h1><p>Here’s what’s happening around your campus.</p></div><button class="btn" data-go="events">Explore events ↗</button></div>
+        <div class="stats">
+          <div class="stat"><div class="stat-head">Available events <span class="stat-icon">◷</span></div><strong id="statEvents">0</strong><small>Across campus categories</small></div>
+          <div class="stat"><div class="stat-head">My registrations <span class="stat-icon">✓</span></div><strong id="statRegistrations">0</strong><small>Events you’ve joined</small></div>
+          <div class="stat"><div class="stat-head">Organized by me <span class="stat-icon">✦</span></div><strong id="statOrganized">0</strong><small>Your event creations</small></div>
+          <div class="stat"><div class="stat-head">Campus categories <span class="stat-icon">▦</span></div><strong id="statCategories">0</strong><small>Different ways to participate</small></div>
+        </div>
+        <div class="hero"><div><div class="eyebrow" style="color:#d8d2ff">YOUR NEXT BIG MOMENT</div><h2>Find your people. Find your passion.</h2><p>From tech fests to open mics, your next campus memory is one click away.</p></div><button class="btn" data-go="events">Find an event&nbsp; →</button></div>
+        <div class="section-head"><div><h2>Featured events</h2><p>Handpicked campus experiences for you</p></div><button class="btn secondary" data-go="events">View all events</button></div>
+        <div id="featuredEvents" class="events"></div>
+        <div class="lower-grid">
+          <div class="panel"><div class="panel-head"><h3>My upcoming registrations</h3><button data-go="registrations">View all →</button></div><div id="upcomingList" class="activity"></div></div>
+          <div class="panel"><div class="panel-head"><h3>Campus activity</h3><span class="tag">LIVE DEMO</span></div><div id="activityList" class="activity"></div></div>
+        </div>
+      </section>
+      <section id="page-events" class="page">
+        <div class="welcome"><div><div class="eyebrow">DISCOVER SOMETHING NEW</div><h1>Explore events</h1><p>Find events that match your interests and register in seconds.</p></div><button class="btn" data-go="organize">＋ Create event</button></div>
+        <div class="section-head"><div><h2>All campus events</h2><p id="eventCountText">Browse the latest happenings</p></div><div class="filters" id="categoryFilters"></div></div>
+        <div id="allEvents" class="events"></div>
+      </section>
+      <section id="page-registrations" class="page">
+        <div class="welcome"><div><div class="eyebrow">YOUR PLANS</div><h1>My registrations</h1><p>Keep track of events you’ve signed up for.</p></div><button class="btn" data-go="events">Find more events</button></div>
+        <div class="panel"><div class="panel-head"><h3>Registered events</h3><span class="tag" id="registrationCount">0 EVENTS</span></div><div id="registrationTable" class="table-wrap"></div></div>
+      </section>
+      <section id="page-organize" class="page">
+        <div class="welcome"><div><div class="eyebrow">BRING YOUR IDEA TO LIFE</div><h1>Organize an event</h1><p>Create an event listing for your campus community.</p></div></div>
+        <div class="panel" style="max-width:850px"><div class="panel-head"><h3>Event details</h3><span class="tag">NEW EVENT</span></div>
+          <form id="createEventForm" class="form-grid">
+            <div class="field full"><label for="eventTitle">Event title *</label><input id="eventTitle" required maxlength="90" placeholder="e.g. Inter-college coding challenge"></div>
+            <div class="field"><label for="eventCategory">Category *</label><select id="eventCategory" required><option value="">Select category</option><option>Technology</option><option>Music</option><option>Sports</option><option>Arts</option><option>Career</option><option>Cultural</option><option>Other</option></select></div>
+            <div class="field"><label for="eventDate">Date *</label><input id="eventDate" type="date" required></div>
+            <div class="field"><label for="eventTime">Start time *</label><input id="eventTime" type="time" required value="10:00"></div>
+            <div class="field"><label for="eventVenue">Venue *</label><input id="eventVenue" required maxlength="100" placeholder="Auditorium / Main ground"></div>
+            <div class="field"><label for="eventCapacity">Available seats *</label><input id="eventCapacity" type="number" min="1" max="10000" value="100" required></div>
+            <div class="field"><label for="eventOrganizer">Organizer / club</label><input id="eventOrganizer" maxlength="80" placeholder="Your club or department"></div>
+            <div class="field full"><label for="eventDescription">Description *</label><textarea id="eventDescription" required maxlength="700" placeholder="Tell students what the event is about..."></textarea></div>
+            <div class="field full"><button class="btn" type="submit">Publish event →</button></div>
+          </form>
+        </div>
+        <div class="panel" style="max-width:850px;margin-top:18px"><div class="panel-head"><h3>Events you created</h3></div><div id="myEventsList" class="activity"></div></div>
+      </section>
+    </div>
+  </main>
+</div>
+<div id="modalRoot"></div><div id="toastRoot" aria-live="polite"></div>
+<script>
+(function(){
+'use strict';
+const KEYS={users:'cp_users_v1',events:'cp_events_v1',regs:'cp_registrations_v1',session:'cp_session_v1'};
+const $=id=>document.getElementById(id);
+const safeParse=(key,fallback)=>{try{const value=JSON.parse(localStorage.getItem(key));return value==null?fallback:value}catch(e){return fallback}};
+const save=(key,value)=>{try{localStorage.setItem(key,JSON.stringify(value));return true}catch(e){toast('Could not save data. Your browser storage may be full.');return false}};
+const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,9);
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const plusDays=n=>{const d=new Date();d.setDate(d.getDate()+n);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const formatDate=s=>{if(!s)return 'Date TBA';const d=new Date(s+'T12:00:00');return d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})};
+const categories=['Technology','Music','Sports','Arts','Career','Cultural','Other'];
+const catInfo={
+ Technology:{emoji:'💻',art:'art-tech'},Music:{emoji:'🎤',art:'art-music'},Sports:{emoji:'🏆',art:'art-sport'},Arts:{emoji:'🎨',art:'art-art'},Career:{emoji:'🚀',art:'art-career'},Cultural:{emoji:'🎭',art:'art-culture'},Other:{emoji:'✨',art:'art-art'}
+};
+function seedEvents(){return [
+{id:'seed-tech',title:'InnovateX Hackathon',category:'Technology',date:plusDays(4),time:'09:30',venue:'Innovation Lab, Block A',capacity:120,description:'Build something brilliant with fellow creators. A fast-paced campus hackathon with mentors, team challenges and prizes.',organizer:'Coding Club',creator:'demo-user',seed:true},
+{id:'seed-music',title:'Campus Unplugged',category:'Music',date:plusDays(6),time:'17:00',venue:'Open Air Amphitheatre',capacity:180,description:'An evening of live performances, acoustic sets and student bands. Bring your friends and discover new sounds.',organizer:'Music Society',creator:'demo-user',seed:true},
+{id:'seed-sport',title:'Inter-College Sports Meet',category:'Sports',date:plusDays(8),time:'08:00',venue:'Main Sports Ground',capacity:250,description:'Bring your team spirit to a day of friendly competition, track events and team sports.',organizer:'Sports Council',creator:'demo-user',seed:true},
+{id:'seed-art',title:'Canvas & Coffee',category:'Arts',date:plusDays(3),time:'15:30',venue:'Student Activity Centre',capacity:60,description:'A relaxed creative workshop for painting, sketching and meeting fellow art lovers. Materials included.',organizer:'Art Circle',creator:'demo-user',seed:true},
+{id:'seed-career',title:'Career Launch: Industry Connect',category:'Career',date:plusDays(10),time:'11:00',venue:'Seminar Hall 2',capacity:100,description:'Hear practical advice from industry guests, explore career paths and ask questions about internships.',organizer:'Placement Cell',creator:'demo-user',seed:true},
+{id:'seed-culture',title:'Rangotsav Cultural Night',category:'Cultural',date:plusDays(12),time:'18:00',venue:'College Auditorium',capacity:300,description:'Celebrate campus talent with dance, theatre, cultural performances and a vibrant community showcase.',organizer:'Cultural Committee',creator:'demo-user',seed:true}
+]}
+function initData(){
+ let users=safeParse(KEYS.users,[]);
+ if(!Array.isArray(users))users=[];
+ if(!users.some(u=>u.email==='demo@campuspulse.in'))users.push({id:'demo-user',name:'Demo Student',email:'demo@campuspulse.in',password:'Demo@123',college:'CampusPulse Demo College',demo:true});
+ save(KEYS.users,users);
+ let events=safeParse(KEYS.events,null);
+ if(!Array.isArray(events)){events=seedEvents();save(KEYS.events,events)}
+ if(!Array.isArray(safeParse(KEYS.regs,[])))save(KEYS.regs,[]);
+}
+let currentUser=null,activeCategory='All',searchQuery='';
+function getUsers(){return safeParse(KEYS.users,[])}
+function getEvents(){return safeParse(KEYS.events,[]).filter(e=>e&&e.id&&e.title)}
+function getRegs(){return safeParse(KEYS.regs,[])}
+function userRegs(){return getRegs().filter(r=>r.userId===currentUser.id)}
+function isRegistered(eventId){return userRegs().some(r=>r.eventId===eventId)}
+function eventRegs(eventId){return getRegs().filter(r=>r.eventId===eventId).length}
+function remaining(e){return Math.max(0,Number(e.capacity||0)-eventRegs(e.id))}
+function toast(message){const root=$('toastRoot');root.innerHTML='<div class="toast" role="status">'+esc(message)+'</div>';clearTimeout(toast.timer);toast.timer=setTimeout(()=>root.innerHTML='',3000)}
+function showAuth(mode){$('authScreen').classList.remove('hidden');$('app').classList.add('hidden');$('signinForm').classList.toggle('hidden',mode==='signup');$('signupForm').classList.toggle('hidden',mode!=='signup')}
+function showApp(){ $('authScreen').classList.add('hidden');$('app').classList.remove('hidden');renderAll();navigate('dashboard')}
+function login(user){currentUser=user;save(KEYS.session,{userId:user.id});showApp()}
+function logout(){currentUser=null;localStorage.removeItem(KEYS.session);$('sidebar').classList.remove('open');showAuth('signin');$('loginPassword').value=''}
+function navigate(page){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+page));document.querySelectorAll('.nav [data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));$('sidebar').classList.remove('open');if(page==='events')renderEvents();if(page==='registrations')renderRegistrations();if(page==='organize')renderMyEvents();window.scrollTo({top:0,behavior:'smooth'})}
+function go(page){navigate(page)}
+function matches(e){const q=searchQuery.toLowerCase();return(!q||(e.title+' '+e.category+' '+e.venue+' '+e.organizer+' '+e.description).toLowerCase().includes(q))&&(activeCategory==='All'||e.category===activeCategory)}
+function eventCard(e){const info=catInfo[e.category]||catInfo.Other;const left=remaining(e),registered=isRegistered(e.id);return `<article class="event-card"><div class="event-art ${info.art}"><span class="art-emoji">${info.emoji}</span><span class="date-chip">${esc(formatDate(e.date))}</span></div><div class="event-body"><span class="event-type">${esc(e.category)}</span><h3>${esc(e.title)}</h3><p>${esc(e.description)}</p><div class="event-meta"><span>◷ ${esc(e.time||'Time TBA')} · ${esc(formatDate(e.date))}</span><span>⌖ ${esc(e.venue)}</span><span>♙ ${esc(e.organizer||'Campus Organizer')}</span></div><div class="event-footer"><span class="spots">${left} seat${left===1?'':'s'} left</span>${registered?'<span class="tag">REGISTERED</span>':left===0?'<span class="tag full">FULL</span>':`<button class="btn" data-register="${esc(e.id)}">Register</button>`}</div></div></article>`}
+function renderEvents(){const all=getEvents().filter(matches).sort((a,b)=>(a.date||'').localeCompare(b.date||''));$('allEvents').innerHTML=all.length?all.map(eventCard).join(''):'<div class="empty">No events match your search. Try another keyword or category.</div>';$('eventCountText').textContent=all.length+' event'+(all.length===1?'':'s')+' found';document.querySelectorAll('#categoryFilters button').forEach(b=>b.classList.toggle('active',b.dataset.category===activeCategory))}
+function renderFilters(){$('categoryFilters').innerHTML=['All',...categories].map(c=>`<button class="${c===activeCategory?'active':''}" data-category="${esc(c)}">${esc(c)}</button>`).join('')}
+function renderRegistrations(){const regs=userRegs().sort((a,b)=>(a.createdAt||'').localeCompare(b.createdAt||''));$('registrationCount').textContent=regs.length+' EVENT'+(regs.length===1?'':'S');const events=getEvents();const rows=regs.map(r=>{const e=events.find(x=>x.id===r.eventId);if(!e)return '';return `<tr><td><strong>${esc(e.title)}</strong><br><small>${esc(e.category)}</small></td><td>${esc(formatDate(e.date))}<br>${esc(e.time||'')}</td><td>${esc(e.venue)}</td><td><span class="tag">Confirmed</span></td><td><button class="btn outline" data-cancel="${esc(e.id)}">Cancel</button></td></tr>`}).filter(Boolean);$('registrationTable').innerHTML=rows.length?`<table class="data-table"><thead><tr><th>Event</th><th>Date & time</th><th>Venue</th><th>Status</th><th>Action</th></tr></thead><tbody>${rows.join('')}</tbody></table>`:'<div class="empty">You haven’t registered for any events yet. Explore events and join something exciting!</div>'}
+function renderMyEvents(){const list=getEvents().filter(e=>e.creator===currentUser.id);$('myEventsList').innerHTML=list.length?list.map(e=>`<div class="activity-row"><div class="activity-icon">${(catInfo[e.category]||catInfo.Other).emoji}</div><div class="activity-text"><strong>${esc(e.title)}</strong><small>${esc(formatDate(e.date))} · ${eventRegs(e.id)} registrations</small></div><span class="activity-status">Published</span><button class="btn outline" data-delete-event="${esc(e.id)}">Delete</button></div>`).join(''):'<div class="empty">You haven’t created any events yet. Use the form above to publish your first event.</div>'}
+function renderDashboard(){const events=getEvents().slice().sort((a,b)=>(a.date||'').localeCompare(b.date||''));const regs=userRegs();const mine=events.filter(e=>e.creator===currentUser.id);$('statEvents').textContent=events.length;$('statRegistrations').textContent=regs.length;$('statOrganized').textContent=mine.length;$('statCategories').textContent=new Set(events.map(e=>e.category)).size;$('topName').textContent=currentUser.name;$('topCollege').textContent=currentUser.college||'College community';$('topAvatar').textContent=(currentUser.name||'S').trim().charAt(0).toUpperCase();$('welcomeTitle').textContent=(new Date().getHours()<12?'Good morning':new Date().getHours()<17?'Good afternoon':'Good evening')+', '+currentUser.name.split(' ')[0]+' 👋';$('featuredEvents').innerHTML=events.filter(e=>e.date>=today()).slice(0,3).map(eventCard).join('')||'<div class="empty">No upcoming events. Create one to get started!</div>';
+ const upcoming=regs.map(r=>({r,e:events.find(e=>e.id===r.eventId)})).filter(x=>x.e).sort((a,b)=>a.e.date.localeCompare(b.e.date)).slice(0,4);
+ $('upcomingList').innerHTML=upcoming.length?upcoming.map(({e})=>`<div class="activity-row"><div class="activity-icon">${(catInfo[e.category]||catInfo.Other).emoji}</div><div class="activity-text"><strong>${esc(e.title)}</strong><small>${esc(formatDate(e.date))} · ${esc(e.time||'')}</small></div><span class="activity-status">Joined</span></div>`).join(''):'<div class="empty">Your registered events will appear here.</div>';
+ const activity=events.filter(e=>e.seed).slice(0,3);$('activityList').innerHTML=activity.map(e=>`<div class="activity-row"><div class="activity-icon">${(catInfo[e.category]||catInfo.Other).emoji}</div><div class="activity-text"><strong>${esc(e.title)}</strong><small>${esc(e.category)} · ${esc(formatDate(e.date))}</small></div><span class="activity-status">${eventRegs(e.id)} joined</span></div>`).join('');
+}
+function renderAll(){renderFilters();renderDashboard();renderEvents();renderRegistrations();renderMyEvents()}
+function registerEvent(id){const e=getEvents().find(x=>x.id===id);if(!e)return toast('Event not found.');if(isRegistered(id))return toast('You are already registered.');if(remaining(e)<1)return toast('Sorry, this event is full.');const regs=getRegs();regs.push({id:uid(),userId:currentUser.id,eventId:id,createdAt:new Date().toISOString()});if(save(KEYS.regs,regs)){renderAll();toast('Registration confirmed for '+e.title+'!')}}
+function cancelRegistration(id){if(!confirm('Cancel your registration for this event?'))return;const regs=getRegs().filter(r=>!(r.userId===currentUser.id&&r.eventId===id));if(save(KEYS.regs,regs)){renderAll();toast('Registration cancelled.')}}
+function deleteEvent(id){const e=getEvents().find(x=>x.id===id);if(!e||e.creator!==currentUser.id)return toast('You can only delete events you created.');if(!confirm('Delete "'+e.title+'"? Registrations for it will also be removed.'))return;save(KEYS.events,getEvents().filter(x=>x.id!==id));save(KEYS.regs,getRegs().filter(r=>r.eventId!==id));renderAll();toast('Event deleted.')}
+$('showSignup').addEventListener('click',()=>showAuth('signup'));$('showSignin').addEventListener('click',()=>showAuth('signin'));
+$('loginForm').addEventListener('submit',e=>{e.preventDefault();const email=$('loginEmail').value.trim().toLowerCase(),password=$('loginPassword').value;const user=getUsers().find(u=>u.email.toLowerCase()===email&&u.password===password);if(!user)return toast('Incorrect email or password. Please try again.');login(user)});
+$('demoLogin').addEventListener('click',()=>{const user=getUsers().find(u=>u.email==='demo@campuspulse.in');if(user)login(user);else toast('Demo account is unavailable. Refresh the page to reset demo data.')});
+$('registerForm').addEventListener('submit',e=>{e.preventDefault();const name=$('signupName').value.trim(),email=$('signupEmail').value.trim().toLowerCase(),college=$('signupCollege').value.trim(),password=$('signupPassword').value,confirmPass=$('signupConfirm').value;if(password!==confirmPass)return toast('Passwords do not match.');if(password.length<6)return toast('Password must be at least 6 characters.');const users=getUsers();if(users.some(u=>u.email.toLowerCase()===email))return toast('An account with this email already exists. Sign in instead.');const user={id:uid(),name,email,college,password,demo:false};users.push(user);if(save(KEYS.users,users)){login(user);toast('Account created. Welcome to CampusPulse!')}});
+$('logoutBtn').addEventListener('click',logout);$('mobileMenu').addEventListener('click',()=>$('sidebar').classList.toggle('open'));
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.page)));
+document.addEventListener('click',e=>{const goBtn=e.target.closest('[data-go]');if(goBtn)return go(goBtn.dataset.go);const reg=e.target.closest('[data-register]');if(reg)return registerEvent(reg.dataset.register);const cancel=e.target.closest('[data-cancel]');if(cancel)return cancelRegistration(cancel.dataset.cancel);const del=e.target.closest('[data-delete-event]');if(del)return deleteEvent(del.dataset.deleteEvent);const cat=e.target.closest('[data-category]');if(cat){activeCategory=cat.dataset.category;renderEvents()}});
+$('globalSearch').addEventListener('input',e=>{searchQuery=e.target.value;renderEvents();if(!searchQuery||$('page-events').classList.contains('active'))return;});
+$('createEventForm').addEventListener('submit',e=>{e.preventDefault();const event={id:uid(),title:$('eventTitle').value.trim(),category:$('eventCategory').value,date:$('eventDate').value,time:$('eventTime').value,venue:$('eventVenue').value.trim(),capacity:Number($('eventCapacity').value),description:$('eventDescription').value.trim(),organizer:$('eventOrganizer').value.trim()||currentUser.name,creator:currentUser.id,seed:false};if(!event.title||!event.category||!event.date||!event.time||!event.venue||!event.description)return toast('Please complete all required fields.');if(event.date<today())return toast('Event date cannot be in the past.');if(!Number.isInteger(event.capacity)||event.capacity<1)return toast('Enter a valid seat capacity.');const events=getEvents();events.push(event);if(save(KEYS.events,events)){$('createEventForm').reset();$('eventDate').value=plusDays(1);$('eventTime').value='10:00';renderAll();toast('Your event has been published!');navigate('organize')}});
+$('eventDate').min=today();$('eventDate').value=plusDays(1);
+window.addEventListener('storage',e=>{if(Object.values(KEYS).includes(e.key)&&currentUser)renderAll()});
+initData();
+const session=safeParse(KEYS.session,null);if(session&&session.userId){const user=getUsers().find(u=>u.id===session.userId);if(user){currentUser=user;showApp()}else showAuth('signin')}else showAuth('signin');
+})();
+</script>
+</body>
+</html>
